@@ -31,7 +31,10 @@ console.log(square.area); // 100
 // initial state 
 const word_info = {
   selected_word: '',
+  // maybe turn into an array or empty obj
   current_guess: '',
+  rough_guess: '',
+  formatted_guess: '',
   guess_count: 0,
 }
 
@@ -47,7 +50,7 @@ const randomWordPicker = (word_list) => {
   const rand_index = Math.floor(Math.random() * max_options)
 
   // some day add state that tracks if index/ word was already selected
-  const selected_word = word_list[rand_index].lower()
+  const selected_word = word_list[rand_index].toLowerCase()
 
   // console.log('selected_word: ', selected_word)
   return word_info.selected_word = selected_word;
@@ -59,7 +62,7 @@ const randomWordPicker = (word_list) => {
 // going to manually create guesses for now at bottom of app
 const setGuess = (guess) => {
     // standardized case for guess - probably make into util function
-    const cleaned_guess = guess.lower() 
+    const cleaned_guess = guess.toLowerCase() 
 
     // update guess count
     word_info.guess_count =  word_info.guess_count + 1
@@ -76,9 +79,20 @@ const setGuess = (guess) => {
 // check guess - uses shared scope to access word_info object
 // made into arrow function to prep for eventual transition to a class format
 const checkGuess = () => {
-  console.log('checkGuess guess: ', word_info.formatted_guess)
   
+  const guess = word_info.formatted_guess
+  const correct_answer = word_info.selected_word
 
+  if(guess === correct_answer){
+    console.log(`Congrats! Your guess: ${guess} matches the mystery word: ${correct_answer}`)
+  } else {
+    // console.log("It's time to see what letters match")
+    // destructuring strings into arrays for easier comparison 
+    const guess_array = [...guess],
+          answer_array = [...correct_answer];
+
+    console.log('guess_array: ', guess_array, ' answer_array: ', answer_array)
+  }
 
   // check guess against solution
 }
@@ -89,8 +103,13 @@ const checkGuess = () => {
 randomWordPicker(secret_words)
 
 // currently calls checkGuess in function
-setGuess('joy')
+// setGuess('joy')
+// setGuess('joyful')
 
-setGuess('joyful')
+// sticking to 5 letter words for now
+// currently no controller logic to enforce guess input same length as correct answer
+// so manually making the assumption
+setGuess('bands')
+setGuess('hello')
 
 console.log(word_info)
