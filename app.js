@@ -3,6 +3,9 @@
 // heck maybe its own app crawling twitter for word ideas?
 const secret_words = ['hello', 'sheep', 'bling', 'sleep']
 
+// Thinking of turning WordGuesser into a class
+// with word_info becoming this in the constructor and taking secret_words as the param for init
+
 // initial state 
 const word_info = {
   selected_word: '',
@@ -11,7 +14,7 @@ const word_info = {
 
 // get word of day
 // assuming array for type in parameter
-function randomWordPicker(word_list){
+const randomWordPicker = (word_list) => {
   // randomly pick a number between 0 and 1 less the index length
   const max_options = word_list.length
   
@@ -24,7 +27,7 @@ function randomWordPicker(word_list){
   const selected_word = word_list[rand_index]
 
   // console.log('selected_word: ', selected_word)
-  return selected_word;
+  return word_info.selected_word = selected_word;
 
 }
 
@@ -40,6 +43,6 @@ function checkGuess(guess, solution){
 
 // provide feed back
 
-word_info.selected_word = randomWordPicker(secret_words)
+randomWordPicker(secret_words)
 
-// console.log(word_info)
+console.log(word_info)
