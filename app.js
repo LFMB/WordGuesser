@@ -1,10 +1,11 @@
 
 // word bank - likely will turn into a more complicated data structure
-// heck maybe its own app crawling twitter for word ideas?
+// heck, maybe its own app crawling twitter for word ideas?
 const secret_words = ['hello', 'sheep', 'bling', 'sleep']
 
 // Thinking of turning WordGuesser into a class
 // with word_info becoming this in the constructor and taking secret_words as the param for init
+// below is a reminder on class declarations in JS
 /*
 class Rectangle {
   constructor(height, width) {
@@ -46,7 +47,7 @@ const randomWordPicker = (word_list) => {
   const rand_index = Math.floor(Math.random() * max_options)
 
   // some day add state that tracks if index/ word was already selected
-  const selected_word = word_list[rand_index]
+  const selected_word = word_list[rand_index].lower()
 
   // console.log('selected_word: ', selected_word)
   return word_info.selected_word = selected_word;
@@ -57,19 +58,27 @@ const randomWordPicker = (word_list) => {
 // will need to create a UI for this?
 // going to manually create guesses for now at bottom of app
 const setGuess = (guess) => {
+    // standardized case for guess - probably make into util function
+    const cleaned_guess = guess.lower() 
+
     // update guess count
     word_info.guess_count =  word_info.guess_count + 1
-    word_info.current_guess = guess
+
+    // standardized case for guess?
+    word_info.rough_guess = guess
+    word_info.formatted_guess = cleaned_guess
 
     // not happy about the nesting of checkGuess
     // maybe create an async/await?
-    checkGuess(guess)
+    checkGuess()
 }
 
-// check guess
+// check guess - uses shared scope to access word_info object
 // made into arrow function to prep for eventual transition to a class format
-const checkGuess = (guess) => {
-  console.log('checkGuess guess: ', guess)
+const checkGuess = () => {
+  console.log('checkGuess guess: ', word_info.formatted_guess)
+  
+
 
   // check guess against solution
 }
