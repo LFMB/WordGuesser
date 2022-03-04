@@ -25,7 +25,7 @@ function isUnique(stringInQuest){
   for(let i = 0; i < stringInQuest.length; i++){
     const charCheck = stringInQuest[i]
 
-    if(chars.has(charCheck) === true){
+    if(chars.has(charCheck)){
       return false;
     }
 
