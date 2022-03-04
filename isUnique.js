@@ -19,11 +19,17 @@ console.log(
 
 
 function isUnique(stringInQuest){
+  // wonder if you can do [...].sort() as well
+  const chars_array = stringInQuest.split('').sort()
 
+  for(let i = 1; i < chars_array.length; i++){
+    if(chars_array[i] === chars_array[i-1]){
+      return false;
+    }
+  }
+
+  /*
   for(let i = 0; i < stringInQuest.length; i++){
-    // lastIndexOf starts at end of string and iterates
-    // from there to position given looking for the index
-    // of next matching value given.
     // If lastIndexOf finds a match before spot being checked
     // we have a duplicate char.
     let charInQuest = stringInQuest[i]
@@ -31,6 +37,7 @@ function isUnique(stringInQuest){
       return false;
     }
   }
+  */
   return true;
 
 }
