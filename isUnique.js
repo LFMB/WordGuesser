@@ -19,7 +19,11 @@ console.log(
 
 
 function isUnique(stringInQuest){
-
+  // time to fully leverage Set class
+  return new Set(stringInQuest).size === stringInQuest.length;
+ 
+ 
+  /*
   const chars = new Set();
 
   for(let i = 0; i < stringInQuest.length; i++){
@@ -33,7 +37,9 @@ function isUnique(stringInQuest){
   }
   
   return true;
-  
+  */
+
+
   /*
   // there's no sorting which might be good if the string is long and complex
   const chars = {}
